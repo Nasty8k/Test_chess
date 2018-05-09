@@ -1,7 +1,10 @@
 #include "board.h"
 #include "board_read.h"
+
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
 void board(char deck[8][8]) {
     char input[6];
