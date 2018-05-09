@@ -1,6 +1,7 @@
-#ifndef BOARD_READ_H
-#define BOARD_READ_H
+#ifndef __check_str__
+#define __check_str__
 
-char *board_read();
+
+int check_str(int* pozition, char** container);
 
 #endif

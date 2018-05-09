@@ -21,12 +21,14 @@ int check_str(int* pozition, char** container) {
     xy[7][0] = -2; xy[7][1] = -1;
     switch (i) {
     case 'p':
-         f1 = pozition[3] - pozition[1]; 
-         f2 = pozition[2] - pozition[0];
-         if (( ((pow( f1, 2 ) == 1) || (pow( f1, 2 ) == 0)) || pow( f1, 2 ) == 4 ) && (f2 == 0 )) {
-             if (FREE) {
+        f1 = pozition[3] - pozition[1]; 
+        f2 = pozition[2] - pozition[0];
+        if (( ((pow( f1, 2 ) == 1) 
+              || (pow( f1, 2 ) == 0)) 
+                 || pow( f1, 2 ) == 4 ) && (f2 == 0 )) {
+            if (FREE) {
                 return 0;
-             }
+            }
          }
          break;
     case 'n':
