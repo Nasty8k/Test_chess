@@ -42,6 +42,17 @@ int check_str(int* pozition, char** container) {
             }
          }
          break;
+         
+     case 'k':
+         f1 = pozition[2] - pozition[0];
+         f2 = pozition[3] - pozition[1];
+         if (( pow(f1, 2) == 1 && pow(f2, 2) == 0 ) || 
+               (  pow(f1, 2) == 0 && pow(f2, 2) == 1 )) {
+              if (FREE) {
+                return 0;
+              }
+         }
+         break;
     }
         
     return -1;   
