@@ -71,6 +71,14 @@ int check_str(int* pozition, char** container) {
              }
          }   
          break;
+
+     case 'r':
+         if ((pozition[1] == pozition[3] && pozition[0] != pozition[2]) && FREE) {
+             return 0;
+         } else if ((pozition[1] != pozition[3] && pozition[0] == pozition[2]) && FREE) {
+             return 0;
+         }
+         break;
     }
         
     return -1;   
