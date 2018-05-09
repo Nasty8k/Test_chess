@@ -42,6 +42,7 @@ int check_str(int* pozition, char** container) {
             }
          }
          break;
+    }
         
     return -1;   
 }
