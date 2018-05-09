@@ -1,17 +1,34 @@
-#include "board_read.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <ctype.h>
+#include "board.h"
 
-char *board_read() {
-    char *str = calloc(7, sizeof(char));
-    do {
-    scanf("%6s", str);
-    } while(str[0] < 'a' || str[0] > 'h'
-        || str[1] < '0' || str[1] > '8'
-        || str[2] != '-'
-        || str[3] < 'a' || str[3] > 'h'
-        || str[4] < '0' || str[4] > '9'
-        || str[5] != '\0'
-      );
-    return str;
+#define FREE container[pozition[3]][pozition[2]] == ' '
+
+int check_str(int* pozition, char** container) {
+    char i;
+    i = tolower(container[pozition[1]][pozition[0]]);
+    int k, f1, f2;
+    int xy[8][2];
+    xy[0][0] =  1; xy[0][1] = -2;
+    xy[1][0] =  1; xy[1][1] =  2;
+    xy[2][0] = -1; xy[2][1] = -2;
+    xy[3][0] = -1; xy[3][1] =  2;
+    xy[4][0] =  2; xy[4][1] = -1;
+    xy[5][0] =  2; xy[5][1] =  1;
+    xy[6][0] = -2; xy[6][1] =  1;
+    xy[7][0] = -2; xy[7][1] = -1;
+    switch (i) {
+    case 'p':
+         f1 = pozition[3] - pozition[1]; 
+         f2 = pozition[2] - pozition[0];
+         if (( ((pow( f1, 2 ) == 1) || (pow( f1, 2 ) == 0)) || pow( f1, 2 ) == 4 ) && (f2 == 0 )) {
+             if (FREE) {
+                return 0;
+             }
+         }
+         break;
+        
+    return -1;   
 }
