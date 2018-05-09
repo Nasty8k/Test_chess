@@ -1,28 +1,39 @@
-CFLAGS = -Wall -Werror -std=c99
-OBJ = gcc -c $< -o $@ $(CFLAGS)
+CC = gcc
+CFLAGS  = -Wall -Werror -std=c99
 
-.PHONY: all clean
+.PHONY: clean open
 
-all: bin/chess.exe
+default: bin/board
 
-bin/chess.exe: build/main.o build/board_print_plain.o build/board_start.o build/board.o build/board_read.o
-	gcc $^ -o $@ $(CFLAGS)
+test: ./bin/board-test
+	./bin/board-test
 
-build/main.o: src/main.c
-	$(OBJ)
+./bin/board: ./build/main.o ./build/board.o ./build/check_str.o bin test
+		$(CC) $(CFLAGS) -o ./bin/board ./build/main.o ./build/board.o ./build/check_str.o -lm
 
-build/board_print_plain.o: src/board_print_plain.c src/board_print_plain.h
-	$(OBJ)
+./build/main.o: ./src/main.c ./src/board.h build
+		$(CC) $(CFLAGS) -o build/main.o -c src/main.c -lm
 
-build/board_start.o: src/board_start.c src/board_start.h
-	$(OBJ)
+./build/board.o: ./src/board.c ./src/board.h build
+		$(CC) $(CFLAGS) -o ./build/board.o -c ./src/board.c -lm
 
-build/board.o: src/board.c src/board.h
-	$(OBJ)
+./build/check_str.o: ./src/check_str.c ./src/check_str.h build
+		$(CC) $(CFLAGS) -o ./build/check_str.o -c ./src/check_str.c -lm
 
-build/board_read.o: src/board_read.c src/board_read.h
-	$(OBJ)
+bin/board-test: ./build/main_test.o ./build/board.o ./build/check_str.o bin
+	$(CC) $(CFLAGS) ./build/main_test.o ./build/board.o ./build/check_str.o -o bin/board-test -lm
+
+./build/main_test.o: ./test/main.c ./thirdparty/ctest.h ./src/board.h ./src/check_str.h build
+	$(CC) $(CFLAGS) -I thirdparty -I src -c ./test/main.c -o ./build/main_test.o -lm
+
+build:
+	mkdir build
+
+bin:
+	mkdir bin
 
 clean:
-	rm build/*.o
-	rm bin/*.exe
+	rm -rf build bin
+
+open:
+	./bin/board
