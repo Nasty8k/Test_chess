@@ -29,6 +29,17 @@ int check_str(int* pozition, char** container) {
              }
          }
          break;
+    case 'n':
+         for (k = 0; k <= 7; k++) {
+            if (pozition[0] + xy[k][0] == pozition[2]) {
+                if (pozition[1] + xy[k][1] == pozition[3]) {
+                    if (FREE) {
+                        return 0;
+                    }
+                }
+            }
+         }
+         break;
         
     return -1;   
 }
