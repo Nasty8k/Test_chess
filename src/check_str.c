@@ -55,14 +55,22 @@ int check_str(int* pozition, char** container) {
          break;
          
      case 'q':
-            if ((pow(pozition[2] - pozition[0], 2) == pow(pozition[3] - pozition[1], 2))
-                 || (pozition[1] == pozition[3] && pozition[0] != pozition[2]) 
-                   || (pozition[1] != pozition[3] && pozition[0] == pozition[2])) {
-                if (FREE) {
-                    return 0;
-                }
-            }
-            break;
+         if ((pow(pozition[2] - pozition[0], 2) == pow(pozition[3] - pozition[1], 2))
+              || (pozition[1] == pozition[3] && pozition[0] != pozition[2]) 
+                || (pozition[1] != pozition[3] && pozition[0] == pozition[2])) {
+             if (FREE) {
+                return 0;
+             }
+         }
+         break;
+            
+     case 'b':  
+         if (pow(pozition[2] - pozition[0], 2) == pow(pozition[3] - pozition[1], 2)) {
+             if (FREE) {
+                 return 0;
+             }
+         }   
+         break;
     }
         
     return -1;   
